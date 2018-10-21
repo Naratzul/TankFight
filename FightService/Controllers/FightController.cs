@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Docker.DotNet;
-using Docker.DotNet.Models;
-using GameLogic.Implementations.Game;
+using FightService.Services.Interfaces;
 using GameLogic.Interfaces.Public;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +9,7 @@ namespace FightService.Controllers
   [Route("api/[controller]")]
   public class FightController : Controller
   {
-    private IDockerClient dockerClient;
+    private readonly IBattleRunner battleRunner;
 
     /// <summary>
     /// Играет бой:
@@ -32,33 +29,29 @@ namespace FightService.Controllers
     [ProducesResponseType(500)]
     public async Task<IActionResult> RunBattle(string[] imageTags, IMapInfo mapInfo, IGameSettings gameSettings)
     {
-      //TODO Для тестового боя (когда игрок тестит свой код), не нужно создавать тестовые контейнеры, а возвращать случайный результат, не зависящий от входных данных.
-
-      var game = new Game(imageTags, mapInfo, gameSettings);
-
-      var containers = new List<string>();
-
-      foreach (var imageTag in imageTags)
+      if (imageTags == null || imageTags.Length == 0)
       {
-        var createResult = await this.dockerClient.Containers.CreateContainerAsync(new CreateContainerParameters
-        {
-          AttachStdin = true,
-          AttachStdout = true,
-          AttachStderr = true,
-          NetworkDisabled = true,
-          Image = imageTag
-        });
-
-        //TODO контейнер может не подняться
-        containers.Add(createResult.ID);
+        return this.BadRequest();
       }
+
+      if (mapInfo == null)
+      {
+        return this.BadRequest();
+      }
+
+      if (gameSettings == null)
+      {
+        return this.BadRequest();
+      }
+
+      await this.battleRunner.RunBattle(imageTags, mapInfo, gameSettings);
 
       throw new NotImplementedException();
     }
 
-    public FightController(IDockerClient dockerClient)
+    public FightController(IBattleRunner battleRunner)
     {
-      this.dockerClient = dockerClient;
+      this.battleRunner = battleRunner;
     }
   }
 }

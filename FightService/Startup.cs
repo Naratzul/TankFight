@@ -1,6 +1,8 @@
 ﻿using System;
 using Docker.DotNet;
 using FightService.HttpClients;
+using FightService.Services.Implementation;
+using FightService.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +30,10 @@ namespace FightService
         .AddSingleton(RestService.For<IStorageServiceClient>(this.Configuration["StorageService"]))
         .AddSingleton<IDockerClient>(new DockerClientConfiguration(new Uri(this.Configuration["Docker"]))
           .CreateClient());
+
+      services
+        .AddSingleton<IContainerService, ContainerService>()
+        .AddSingleton<IBattleRunner, BattleRunner>();
 
       services
         .AddMvc()

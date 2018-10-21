@@ -5,6 +5,6 @@ namespace FightService.Services.Interfaces
 {
   public interface IMovesService
   {
-    Task<IUserMove> GetMovesFromContainer(IMapInfo mapInfo, string containerId);
+    Task<IUserMove> GetMoves(IMapInfo mapInfo, string containerId);
   }
 }
