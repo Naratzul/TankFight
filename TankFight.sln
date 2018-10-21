@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StorageService", "StorageSe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImageService", "ImageService\ImageService.csproj", "{3FC4B5F2-EC7E-461F-AA1A-B78170E6482E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FightService", "FightService\FightService.csproj", "{D1D5479F-0B5A-46A8-A566-FF43F6EC9751}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3FC4B5F2-EC7E-461F-AA1A-B78170E6482E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FC4B5F2-EC7E-461F-AA1A-B78170E6482E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC4B5F2-EC7E-461F-AA1A-B78170E6482E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1D5479F-0B5A-46A8-A566-FF43F6EC9751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1D5479F-0B5A-46A8-A566-FF43F6EC9751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1D5479F-0B5A-46A8-A566-FF43F6EC9751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1D5479F-0B5A-46A8-A566-FF43F6EC9751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
